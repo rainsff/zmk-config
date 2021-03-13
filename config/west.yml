@@ -2,9 +2,11 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: firstnevyn
+      url-base: https://github.com/firstnevyn
   projects:
     - name: zmk
-      remote: zmkfirmware
+      remote: firstnevyn
       revision: main
       import: app/west.yml
   self:
