@@ -33,29 +33,29 @@ jobs:
         run: west update
       - name: West Zephyr export
         run: west zephyr-export
-      - name: West Build (Twoyo Left)
-        run: west build -s zmk/app -b nice_nano -- -DSHIELD=twoyo_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-      - name: Twoyo DTS File
+      - name: West Build (Microdox Left)
+        run: west build -s zmk/app -b nice_nano -- -DSHIELD=microdox_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+      - name: Microdox DTS File
         if: ${{ always() }}
         run: cat -n build/zephyr/nice_nano.dts.pre.tmp
-      - name: Twoyo Left Kconfig file
+      - name: Microdox Left Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
       - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 twoyo_left.uf2
-      - name: Archive (Twoyo Left)
+        run: cp build/zephyr/zmk.uf2 microdox_left_nice_nano.uf2
+      - name: Archive (Microdox Left)
         uses: actions/upload-artifact@v2
         with:
           name: firmware
-          path: twoyo_left.uf2
-      - name: West Build (Twoyo Right)
-        run: west build --pristine -s zmk/app -b nice_nano -- -DSHIELD=twoyo_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+          path: microdox_left_nice_nano.uf2
+      - name: West Build (Microdox Right)
+        run: west build --pristine -s zmk/app -b nice_nano -- -DSHIELD=microdox_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
 
-      - name: Twoyo Right Kconfig file
+      - name: Microdox Right Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
       - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 twoyo_right.uf2
-      - name: Archive (Twoyo Right)
+        run: cp build/zephyr/zmk.uf2 microdox_right_nice_nano.uf2
+      - name: Archive (Microdox Right)
         uses: actions/upload-artifact@v2
         with:
           name: firmware
-          path: twoyoy_right.uf2
+          path: microdox_right_nice_nano.uf2
